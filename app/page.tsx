@@ -1,101 +1,84 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Card, CardContent } from "@/components/ui/card"
+import { Instagram, Twitter, Youtube, Github, Linkedin } from 'lucide-react'
+
+const links = [
+  { title: 'My Personal Website', url: 'https://example.com', description: 'Check out my portfolio and blog' },
+  { title: 'Latest Project', url: 'https://project.example.com', description: 'Explore my newest creation' },
+  { title: 'Book Recommendation', url: 'https://amazon.com', description: 'My favorite read this month' },
+  { title: 'Free Resources', url: 'https://resources.example.com', description: 'Helpful tools and guides' },
+]
+
+const socialLinks = [
+  { icon: Instagram, url: 'https://instagram.com/yourusername' },
+  { icon: Twitter, url: 'https://twitter.com/yourusername' },
+  { icon: Youtube, url: 'https://youtube.com/yourchannel' },
+  { icon: Github, url: 'https://github.com/yourusername' },
+  { icon: Linkedin, url: 'https://linkedin.com/in/yourusername' },
+]
+
+export default function  LinkInBioComponent() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className="min-h-screen bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 flex items-center justify-center p-4">
+      <Card className="w-full max-w-md bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden">
+        <CardContent className="p-6">
+          <div className="flex flex-col items-center mb-6">
+            <Avatar className="w-24 h-24 border-4 border-white shadow-lg">
+              <AvatarImage src="/placeholder.svg?height=96&width=96" alt="Profile Picture" />
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
+            <h1 className="mt-4 text-2xl font-bold text-gray-800">Jane Doe</h1>
+            <p className="text-gray-600 text-center mt-2">Passionate creator, tech enthusiast, and lifelong learner. Sharing my journey and insights with you!</p>
+          </div>
+          
+          <div className="space-y-4">
+            {links.map((link, index) => (
+              <motion.a
+                key={index}
+                href={link.url}
+                className="block"
+                whileHover={{ scale: 1.03 }}
+                onHoverStart={() => setHoveredIndex(index)}
+                onHoverEnd={() => setHoveredIndex(null)}
+              >
+                <Card className="transition-shadow duration-300 hover:shadow-md">
+                  <CardContent className="p-4">
+                    <h2 className="text-lg font-semibold text-gray-800">{link.title}</h2>
+                    <p className="text-gray-600 text-sm mt-1">{link.description}</p>
+                    {hoveredIndex === index && (
+                      <motion.div
+                        className="w-full h-0.5 bg-gradient-to-r from-pink-500 to-indigo-500 mt-2"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.a>
+            ))}
+          </div>
+          
+          <div className="flex justify-center space-x-4 mt-6">
+            {socialLinks.map((link, index) => (
+              <motion.a
+                key={index}
+                href={link.url}
+                className="text-gray-600 hover:text-gray-800 transition-colors duration-300"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+              >
+                <link.icon className="w-6 h-6" />
+              </motion.a>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
-  );
+  )
 }
