@@ -4,17 +4,19 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
-import { Instagram, Twitter, Youtube, Github, Linkedin } from 'lucide-react'
+import { Instagram, Twitter, Youtube, Github, Linkedin, Images } from 'lucide-react' 
+import Image from 'next/image';
+import profilePic from '/Users/aytacacar/link-in-bio/app/images/IMG_6958.jpg';
 
 const links = [
-  { title: 'My Personal Website', url: 'https://example.com', description: 'Check out my portfolio and blog' },
+  { title: 'My Website', url: 'https://cocoelif.de', description: 'Check out my presets and blog' },
   { title: 'Latest Project', url: 'https://project.example.com', description: 'Explore my newest creation' },
   { title: 'Book Recommendation', url: 'https://amazon.com', description: 'My favorite read this month' },
   { title: 'Free Resources', url: 'https://resources.example.com', description: 'Helpful tools and guides' },
 ]
 
 const socialLinks = [
-  { icon: Instagram, url: 'https://instagram.com/yourusername' },
+  { icon: Instagram, url: 'https://instagram.com/cocoelif' },
   { icon: Twitter, url: 'https://twitter.com/yourusername' },
   { icon: Youtube, url: 'https://youtube.com/yourchannel' },
   { icon: Github, url: 'https://github.com/yourusername' },
@@ -30,10 +32,10 @@ export default function  LinkInBioComponent() {
         <CardContent className="p-6">
           <div className="flex flex-col items-center mb-6">
             <Avatar className="w-24 h-24 border-4 border-white shadow-lg">
-              <AvatarImage src="/placeholder.svg?height=96&width=96" alt="Profile Picture" />
-              <AvatarFallback>JD</AvatarFallback>
+              <Image src={profilePic} alt="Profile Picture" width={96} height={96}/>
+              <AvatarFallback>EA</AvatarFallback>
             </Avatar>
-            <h1 className="mt-4 text-2xl font-bold text-gray-800">Jane Doe</h1>
+            <h1 className="mt-4 text-2xl font-bold text-gray-800">Elif Acar</h1>
             <p className="text-gray-600 text-center mt-2">Passionate creator, tech enthusiast, and lifelong learner. Sharing my journey and insights with you!</p>
           </div>
           
