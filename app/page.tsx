@@ -2,11 +2,10 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
-import { Instagram, Twitter, Youtube, Github, Linkedin, Images } from 'lucide-react' 
-import Image from 'next/image';
-import profilePic from '/Users/aytacacar/link-in-bio/app/images/IMG_6958.jpg';
+import { Instagram, Twitter, Youtube, Github, Linkedin } from 'lucide-react' 
+import Image from 'next/image'
 
 const links = [
   { title: 'My Website', url: 'https://cocoelif.de', description: 'Check out my presets and blog' },
@@ -32,7 +31,7 @@ export default function  LinkInBioComponent() {
         <CardContent className="p-6">
           <div className="flex flex-col items-center mb-6">
             <Avatar className="w-24 h-24 border-4 border-white shadow-lg">
-              <Image src={profilePic} alt="Profile Picture" width={96} height={96}/>
+              <Image src="/image/IMG_6958.jpg" alt="Profile Picture" width={96} height={96}/>
               <AvatarFallback>EA</AvatarFallback>
             </Avatar>
             <h1 className="mt-4 text-2xl font-bold text-gray-800">Elif Acar</h1>
