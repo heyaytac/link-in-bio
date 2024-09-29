@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
-import { Instagram , HomeIcon, Mail } from 'lucide-react'
+import { Instagram, HomeIcon, Mail } from 'lucide-react'
 
 const links = [
   { title: 'My Website', url: 'https://cocoelif.de', description: 'Check out my presets and blog' },
@@ -20,12 +20,65 @@ const socialLinks = [
   { icon: HomeIcon, url: 'https://cocoelif.de' },
 ]
 
+const AnimatedBackground = () => (
+  <div className="animated-background">
+    <style jsx>{`
+      .animated-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          #ff9a9e,
+          #fad0c4,
+          #ffecd2,
+          #e0c3fc,
+          #8ec5fc
+        );
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    `}</style>
+  </div>
+)
+
+const getGreeting = () => {
+  const hour = new Date().getHours()
+  if (hour >= 5 && hour < 12) return 'Good morning'
+  if (hour >= 12 && hour < 18) return 'Good afternoon'
+  return 'Good evening'
+}
+
 export default function LinkInBioComponent() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [greeting, setGreeting] = useState('')
+
+  useEffect(() => {
+    setGreeting(getGreeting())
+    const intervalId = setInterval(() => {
+      setGreeting(getGreeting())
+    }, 60000) // Update every minute
+
+    return () => clearInterval(intervalId)
+  }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center p-4 relative">
+      <AnimatedBackground />
+      <Card className="w-full max-w-md bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden relative z-10">
         <CardContent className="p-6">
           <div className="flex flex-col items-center mb-6">
             <Avatar className="w-24 h-24 border-4 border-white shadow-lg relative">
@@ -37,8 +90,19 @@ export default function LinkInBioComponent() {
               />
               <AvatarFallback>EA</AvatarFallback>
             </Avatar>
-            <h1 className="mt-4 text-2xl font-bold text-gray-800">Elif Acar</h1>
-            <p className="text-gray-600 text-center mt-2">Fashion & beauty addicted mom of two girls 🫶🏼</p>
+            <motion.div
+              key={greeting}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mt-4 mb-2 text-lg font-medium text-gray-600 bg-gradient-to-r from-pink-400 to-purple-500 bg-clip-text text-transparent"
+            >
+              {greeting}!
+            </motion.div>
+            <h1 className="text-2xl font-bold text-gray-800">Elif Acar</h1>
+            <p className="text-gray-600 text-center mt-2">
+              Fashion & beauty addicted mom of two girls 🫶🏼
+            </p>
           </div>
           
           <div className="space-y-4">
@@ -82,7 +146,6 @@ export default function LinkInBioComponent() {
             ))}
           </div>
 
-          {/* New Attribution Link */}
           <div className="mt-6 text-center">
             <a 
               href="https://instagram.com/heyaytac" 
@@ -90,7 +153,7 @@ export default function LinkInBioComponent() {
               rel="noopener noreferrer"
               className="text-sm text-gray-500 hover:text-gray-700 transition-colors duration-300"
             >
-            Bio Links powered by heyaytac
+              Bio Links powered by heyaytac
             </a>
           </div>
         </CardContent>
