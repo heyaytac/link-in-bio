@@ -2,27 +2,25 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Card, CardContent } from "@/components/ui/card"
-import { Instagram, Twitter, Youtube, Github, Linkedin } from 'lucide-react' 
 import Image from 'next/image'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Card, CardContent } from "@/components/ui/card"
+import { Instagram , HomeIcon, Mail } from 'lucide-react'
 
 const links = [
   { title: 'My Website', url: 'https://cocoelif.de', description: 'Check out my presets and blog' },
-  { title: 'Latest Project', url: 'https://project.example.com', description: 'Explore my newest creation' },
-  { title: 'Book Recommendation', url: 'https://amazon.com', description: 'My favorite read this month' },
-  { title: 'Free Resources', url: 'https://resources.example.com', description: 'Helpful tools and guides' },
+  { title: 'My Interior Account', url: 'https://instagram.com/cocoelifhome', description: 'Explore my home interior' },
+  { title: 'My Trendyol Closet', url: 'https://ty.gl/no3n86uigv', description: 'Find my trendyol favorites' },
+  { title: 'My TikTok', url: 'https://www.tiktok.com/@cocoeliff', description: 'More Vids on TikTok' },
 ]
 
 const socialLinks = [
   { icon: Instagram, url: 'https://instagram.com/cocoelif' },
-  { icon: Twitter, url: 'https://twitter.com/yourusername' },
-  { icon: Youtube, url: 'https://youtube.com/yourchannel' },
-  { icon: Github, url: 'https://github.com/yourusername' },
-  { icon: Linkedin, url: 'https://linkedin.com/in/yourusername' },
+  { icon: Mail, url: 'mailto:hello@cocoelif.de' },
+  { icon: HomeIcon, url: 'https://cocoelif.de' },
 ]
 
-export default function  LinkInBioComponent() {
+export default function LinkInBioComponent() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
@@ -30,12 +28,17 @@ export default function  LinkInBioComponent() {
       <Card className="w-full max-w-md bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden">
         <CardContent className="p-6">
           <div className="flex flex-col items-center mb-6">
-            <Avatar className="w-24 h-24 border-4 border-white shadow-lg">
-              <Image src="/image/IMG_6958.jpg" alt="Profile Picture" width={96} height={96}/>
+            <Avatar className="w-24 h-24 border-4 border-white shadow-lg relative">
+              <Image
+                src="/image/IMG_6958.jpg"
+                alt="Profile Picture"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
               <AvatarFallback>EA</AvatarFallback>
             </Avatar>
             <h1 className="mt-4 text-2xl font-bold text-gray-800">Elif Acar</h1>
-            <p className="text-gray-600 text-center mt-2">Passionate creator, tech enthusiast, and lifelong learner. Sharing my journey and insights with you!</p>
+            <p className="text-gray-600 text-center mt-2">Fashion & beauty addicted mom of two girls 🫶🏼</p>
           </div>
           
           <div className="space-y-4">
@@ -77,6 +80,18 @@ export default function  LinkInBioComponent() {
                 <link.icon className="w-6 h-6" />
               </motion.a>
             ))}
+          </div>
+
+          {/* New Attribution Link */}
+          <div className="mt-6 text-center">
+            <a 
+              href="https://instagram.com/heyaytac" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-gray-500 hover:text-gray-700 transition-colors duration-300"
+            >
+            Bio Links powered by heyaytac
+            </a>
           </div>
         </CardContent>
       </Card>
