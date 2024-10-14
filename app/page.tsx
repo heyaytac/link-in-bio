@@ -152,8 +152,7 @@ export default function LinkInBioComponent() {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-sm text-gray-500 hover:text-gray-700 transition-colors duration-300"
-            >
-              Bio Links powered by heyaytac
+            > Bio links powered by heyaytac
             </a>
           </div>
         </CardContent>
